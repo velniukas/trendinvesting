@@ -1,0 +1,44 @@
+extends layout
+
+  
+block layout.body
+  .container
+    .span12
+
+      .row-fluid.align-center
+        h1 Investing ideas for today's Market.
+
+      .row-fluid.align-center
+        .span12
+            .flexslider
+                ul.slides
+                  li
+                    img(src="img/1.png")
+                  li
+                    img(src="img/2.png")
+                  li
+                    img(src="img/3.png")
+
+      .row-fluid
+        .span12
+
+      .row-fluid
+        .span4.align-center
+          h3 How it works
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        .span4.align-center
+          h3 What our customers say
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        .span4.align-center
+          h3 Contact us
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+       .row-fluid
+        .span12
+
+
+  .row-fluid.mainPageFoot
+      .span6.align-center
+ 
+      .span6.align-center
+ 
+ 

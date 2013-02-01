@@ -1,0 +1,20 @@
+mixin header
+  .header
+    .right
+    .left
+      .navbar
+        a.btn.btn-navbar(data-toggle="collapse",data-target=".nav-collapse")
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.brand(href='/')
+          h3
+            span(style='color:orange;') TREND
+            span(style='color:rgb(99, 82, 82);') Investing
+            span(style='color:orange;font-weight:bold;')
+
+        ul.nav.pull-right.nav-collapse
+            li
+              a(href='/auth')
+                i.icon-user.icon
+                |  Sign In

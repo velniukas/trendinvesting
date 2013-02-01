@@ -1,0 +1,30 @@
+{
+	"name": "trendinvesting",
+	"version": "0.0.1",
+	"description": "Prototype for Alex @ trendinvesting",
+	"homepage": "http://10xengineer.me",
+	"author": {
+		"name": "Steve Messina",
+		"email": "steve@10xengineer.me",
+		"web": "http://10xengineer.me"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/velniukas/trendinvesting.git"
+	},
+	"engines": {
+		"node": "~0.8.0"
+	},
+	"scripts": {
+	},
+	"dependencies": {
+		"underscore" : "~1.3.3",
+		"express" : "~2.5.9",
+		"socket.io" : "~0.9.6",
+		"mustache" : "~0.4.0",
+
+	},
+	"devDependencies": {
+
+	}
+}
