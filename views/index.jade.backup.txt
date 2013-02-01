@@ -1,0 +1,556 @@
+extends layout
+
+block layout.body
+  body#home(data-spy='scroll', data-target='#primary-nav')
+      .navbar.navbar-inverse.navbar-fixed-top
+        .navbar-inner
+          .container
+            a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse') Menu
+            a.brand(href='#home') 
+              span(style='color:orange') TREND
+              span(style='color:white') investing
+            #primary-nav.nav-collapse
+              ul.nav
+                li.active
+                  a.anchorLink(href='#home') Home
+                li
+                  a.anchorLink(href='#features') Features
+                li
+                  a.anchorLink(href='#services') Services
+                li
+                  a.anchorLink(href='#portfolio') Portfolio
+                li
+                  a.anchorLink(href='#about') About
+                li
+                  a.anchorLink(href='#contact') Contact
+            //
+              /.nav-collapse 
+          //
+            /container
+        //
+          /navbar-inner
+      //
+        /navbar
+      .teaser
+        .container
+          .row
+            .span12.headline
+              h1 Investing ideas for today's market.
+              small Professional built portfolios designed to perform in every market
+              i.description And this is that place. So, let's get started right away
+            //
+              /span12
+          //
+            /row
+          .row.animated.fadeInUp
+            .span12
+              #myCarousel.carousel.slide
+                .carousel-inner
+                  //
+                    slide
+                  .active.item
+                    .row
+                      .span6
+                        img(src='img/1.png', alt='')
+                      .span4
+                        h2 Fancy Content Slider
+                        p
+                          | Create a merry-go-round of any content you wish to provide an interactive slideshow of content.
+                        p
+                          | You can slide pictures, text, labels, videos & html content with little to no effort. HTML5 Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster. Bootstrap is built for you.
+                        p
+                          | Place full width images or combine them with text block, links or more images using Bootstrap grid system.
+                        a.btn.btn-red(href='#') Awesome!
+                  //
+                    slide
+                  .item
+                    .row
+                      .span6.animated.rotateInDownLeft
+                        img(src='img/2.png', alt='')
+                      .span4.animated.rotateInUpRight
+                        h2 56 CSS3 Animations
+                        p
+                          | You can do a whole bunch of other stuff with animate.css when you combine it with jQuery or add your own CSS rules.
+                        p
+                          | animate.css is a bunch of cool, fun, and cross-browser cool animations for you to use in your projects. Great for emphasis, home pages, sliders, and general just-add-water-awesomeness. Dynamically add animations using jQuery with ease.
+                        p
+                          | Don't hesitate to start creating your own creative work with this top notch feature.
+                        a.btn.btn-red(href='#') Want to start now?
+                  //
+                    slide
+                  .item
+                    .row
+                      .span6.animated.fadeInUpBig
+                        img(src='img/3.png', alt='')
+                      .span4.animated.fadeInDownBig
+                        h2 Customizable Slider
+                        p
+                          | Use Bootstrap scaffolding goodness to arrange pictures and text the way you want.
+                        p
+                          | Place full width images or combine them with text block, links or more images using Bootstrap grid system.
+                        a.btn.btn-primary(href='#') Start Now!
+                  //
+                    slide
+                  .item.animated.fadeInUpBig
+                    img(src='assets/slide-full-1.png', alt='')
+                  //
+                    slide
+                  .item
+                    .row
+                      .span6.animated.rotateInDownLeft
+                        .video-container
+                          iframe(src='https://player.vimeo.com/video/46992613?title=1&byline=1&portrait=1', width='470', height='580', frameborder='0', webkitallowfullscreen='webkitAllowFullScreen', mozallowfullscreen='mozallowfullscreen', allowfullscreen='allowFullScreen')
+                      .span4.animated.rotateInUpLeft
+                        h2 Responsive videos
+                        p
+                          | Wrap each video in a predefined class container to achieve fluid width videos in your responsive web design.
+                        p
+                          | Every video will fit any screen width, inlcuding, desktop computers, tablets, smartphones and other devices.
+                        a.btn.btn-info(href='#') Mobile ready!
+                    //
+                      /row
+                  //
+                    /item
+                //
+                  /carousel-inner
+                //
+                   Carousel nav 
+                a.carousel-control.left(href='#myCarousel', data-slide='prev') ‹
+                a.carousel-control.right(href='#myCarousel', data-slide='next') ›
+              //
+                /myCarousel
+            //
+              /span12
+          //
+            /row
+        //
+          /container
+      .container
+        //
+          main content
+        .strip
+          .row
+            .span12
+              a.btn.btn-red.btn-large(href='#')
+                i.icon-heart.icon-white
+                | Download Sample!
+              a.btn.btn-inverse.btn-large.anchorLink(href='#portfolio')
+                | Browse Portfolio
+                i.icon-share-alt.icon-white
+              span.call-to-action Download a free sample of our great catalogue and portfolio now!
+              p *Don't worry, we have 7 years in the market, we know our stuff.
+        section#features
+          .row
+            .span12
+              h2
+                em
+                  i.icon-bookmark
+                  | Main Features
+                a.up.anchorLink(href='#home')
+                  i.icon-chevron-up
+          .row
+            .span4.feature
+              h3 HTML5
+              img.thumb(src='assets/feature-html5.png', width='50', height='50', alt='thumb')
+              p
+                strong HTML5
+                | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster. Bootstrap is built for you.
+            .span4.feature
+              h3 Simple Layout
+              img.thumb(src='assets/feature-layout.png', width='50', height='50', alt='thumb')
+              p
+                | Bootstrap is designed to help people of all skill level—designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.
+            .span4.feature
+              h3 Web Fonts
+              img.thumb(src='assets/feature-webfonts.png', alt='thumb')
+              p
+                | Originally built with only modern browsers in mind, Bootstrap has evolved to include support for all major browsers (even IE7!) and, with Bootstrap 2, tablets and smartphones, too.
+          //
+            /row
+          .row
+            .span4.feature
+              h3 Modern Design
+              img.thumb(src='assets/feature-design.png', alt='thumb')
+              p
+                | The best part about forms in Bootstrap is that all your inputs and controls look great no matter how you build them in your markup.
+            .span4.feature
+              h3 Easy to Customize
+              img.thumb(src='assets/feature-customize.png', alt='thumb')
+              p
+                | Different types of form layouts require some changes to markup, but the controls themselves remain and behave the same.
+            .span4.feature
+              h3 Great Support
+              img.thumb(src='assets/feature-support.png', alt='thumb')
+              p
+                | States like error, warning, and success are included for each type of form control. Also included are styles for disabled controls. States like error, warning, and success are included.
+          //
+            /row
+        section#services
+          .row
+            .span12
+              h2
+                em
+                  i.icon-bookmark
+                  | Products & Services
+                a.up.anchorLink(href='#home')
+                  i.icon-chevron-up
+          .row
+            .span4
+              img.framed(src='assets/product-1.png', alt='')
+              br
+            .span5
+              h4 Product Overview
+              p
+                | HD movies and TV shows from iTunes. The entire Netflix streaming catalog. The latest hit shows from Hulu Plus. Live baseball, basketball, and hockey games. Apple TV makes you the master of
+                a(href='#', rel='tooltip', title='fancy tooltip') your own media empire
+                | .
+              p
+                | Get to know the latest features available now. Don't forget to checke out our website on a regular basis:
+              ul
+                li
+                  a(href='#', rel='tooltip', data-placement='right', title='fancy tooltip') Mobile ready
+                li
+                  a(href='#', rel='tooltip', data-placement='right', title='fancy tooltip') Customizable
+                li
+                  a(href='#', rel='tooltip', data-placement='right', title='fancy tooltip') Great customer support
+                li
+                  a(href='#', rel='tooltip', data-placement='right', title='fancy tooltip') dropcapproof design
+            .span3
+              .well
+                strong Item Details
+                hr
+                p
+                  i.icon-tag
+                  | That’s perfect for spontaneous movie nights (or afternoons or mornings). Search by top movies, title, or genre. Can’t decide? Read reviews, watch trailers, and check out Rotten Tomatoes ratings.
+          br
+          .row
+            .span4
+              img.framed(src='assets/product-2.png', alt='')
+              br
+            .span5
+              h4 Second Product Overview
+              p
+                | Make any time prime time. Buy your favorite TV shows and watch them — without commercials — whenever you like.
+                a(href='#', rel='tooltip', title='fancy tooltip') Watch a show the day after it airs
+                | , or camp out on your couch and catch up on past seasons with a marathon of back-to-back-to-back episodes. Apple TV keeps track of your favorite shows, so the next time you turn on your TV, you can quickly see which season you’re watching and which episodes are new. Just choose shows with a few clicks of the Apple Remote.
+              p
+                | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster. Bootstrap is built for you.
+            .span3
+              .well
+                strong Item Details
+                hr
+                p
+                  i.icon-tag
+                  | That’s perfect for spontaneous movie nights (or afternoons or mornings).
+                  a(href='#', rel='tooltip', title='fancy tooltip') Search by top movie
+                  | title, or genre. Can’t decide? Read reviews, watch trailers, and check out Rotten Tomatoes ratings.
+          br
+          .row
+            .span4
+              img.framed(src='assets/product-3.png', alt='')
+              br
+            .span5
+              h4 Third Product Overview
+              p
+                | Make any time prime time. Buy your favorite TV shows and watch them — without commercials — whenever you like. Watch a show the day after it airs, or camp out on your couch and catch.
+              hr
+              blockquote
+                p Best service I've ever experienced. Thank you very much for your time.
+                small Lucida Console
+              hr
+            .span3
+              .well
+                strong Item Details
+                hr
+                p
+                  i.icon-tag
+                  | That’s perfect for spontaneous movie nights (or afternoons or mornings). Search by top movies, title, or genre. Can’t decide? Read reviews, watch trailers, and check out Rotten Tomatoes ratings.
+          br
+          .row
+            .span4
+              img.framed(src='assets/product-4.png', alt='')
+              br
+            .span5
+              h4 Fourth Product Overview
+              p
+                | Make any time prime time. Buy your favorite TV shows and watch them — without commercials — whenever you like. Watch a show the day after it airs, or camp out on your couch and catch.
+              p
+                | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster.
+                a(href='#', rel='tooltip', title='fancy tooltip') Bootstrap
+                | is built for you.
+            .span3
+              .well
+                strong Item Details
+                hr
+                p
+                  i.icon-tag
+                  | That’s perfect for spontaneous movie nights (or afternoons or mornings). Search by top movies, title, or genre. Can’t decide? Read reviews, watch trailers, and check out Rotten Tomatoes ratings.
+        section#portfolio
+          .row
+            .span12
+              h2
+                em
+                  i.icon-bookmark
+                  | Portfolio with LightBox
+                a.up.anchorLink(href='#home')
+                  i.icon-chevron-up
+          .row
+            .span12
+              ul.thumbnails
+                li.span3
+                  .thumbnail
+                    a.js-fancybox(rel='album', href='assets/portfolio-large-1.png', title='Portfolio Item #1')
+                      img(src='assets/portfolio-thumbnail-1.png', alt='')
+                    .caption
+                      h4 Image Title
+                      hr
+                      p Short description for this Portfolio item.
+                li.span3
+                  .thumbnail
+                    a.js-fancybox(rel='album', href='assets/portfolio-large-1.png', title='Portfolio Item #2')
+                      img(src='assets/portfolio-thumbnail-1.png', alt='')
+                    .caption
+                      h4 Image Title
+                      hr
+                      p Short description for this Portfolio item.
+                li.span3
+                  .thumbnail
+                    a.js-fancybox(rel='album', href='assets/portfolio-large-1.png', title='Portfolio Item #3')
+                      img(src='assets/portfolio-thumbnail-1.png', alt='')
+                    .caption
+                      h4 Image Title
+                      hr
+                      p Short description for this Portfolio item.
+                li.span3
+                  .thumbnail
+                    a.js-fancybox(rel='album', href='assets/portfolio-large-1.png', title='Portfolio Item #4')
+                      img(src='assets/portfolio-thumbnail-1.png', alt='')
+                    .caption
+                      h4 Image Title
+                      hr
+                      p Short description for this Portfolio item.
+                li.span3
+                  .thumbnail
+                    a.js-fancybox(rel='album', href='assets/portfolio-large-1.png', title='Portfolio Item #5')
+                      img(src='assets/portfolio-thumbnail-1.png', alt='')
+                    .caption
+                      h4 Image Title
+                      hr
+                      p Short description for this Portfolio item.
+                li.span3
+                  .thumbnail
+                    a.js-fancybox(rel='album', href='assets/portfolio-large-1.png', title='Portfolio Item #6')
+                      img(src='assets/portfolio-thumbnail-1.png', alt='')
+                    .caption
+                      h4 Image Title
+                      hr
+                      p Short description for this Portfolio item.
+                li.span3
+                  .thumbnail
+                    a.js-fancybox(rel='album', href='assets/portfolio-large-1.png', title='Portfolio Item #7')
+                      img(src='assets/portfolio-thumbnail-1.png', alt='')
+                    .caption
+                      h4 Image Title
+                      hr
+                      p Short description for this Portfolio item.
+                li.span3
+                  .thumbnail
+                    a.js-fancybox(rel='album', href='assets/portfolio-large-1.png', title='Portfolio Item #8')
+                      img(src='assets/portfolio-thumbnail-1.png', alt='')
+                    .caption
+                      h4 Image Title
+                      hr
+                      p Short description for this Portfolio item.
+            //
+              span12
+          //
+            /row
+        section#about
+          .row
+            .span12
+              h2
+                em
+                  i.icon-bookmark
+                  | About & Legal
+                a.up.anchorLink(href='#home')
+                  i.icon-chevron-up
+          .row
+            .span4
+              .well
+                h3 Terms and Conditions
+                hr
+                p
+                  span.dropcap 1
+                  | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster. Bootstrap is built for you.
+                p
+                  | Bootstrap is designed to help people of all skill level—designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.
+                a.btn.btn-red(data-toggle='modal', href='#myModal') Launch Modal
+                #myModal.modal.hide.fade
+                  .modal-header
+                    button.close(type='button', data-dismiss='modal') ×
+                    h3 Frequently Asked Questions
+                    span.dropcap 1
+                    h4 Can I use your freebies in my latest client project?
+                    p
+                      | Yes. No attribution required. When sharing any work that uses my resources on sites like Dribbble or Forrst it would be nice to be credited. You want to make me feel all warm and fuzzy inside don’t you?
+                    hr
+                    h4
+                      span.dropcap 2
+                      | Can I use your resources in a theme/template?
+                    p
+                      | Yes. No attribution required but appreciated. I love people coding up the odd freebie, but an entire blog dedicated to just that is probably a step too far Jack. C’mon Mookie, do the right thing.
+                    hr
+                    h4
+                      span.dropcap 3
+                      | Can I offer your freebies for download on my blog/site?
+                    p
+                      | Not directly no. If you want to share the wealth then linking to each resource on Premium Pixels is encouraged and sincerely appreciated. Linking directly to the zip file, or worse, repackaging your own zip file, gets my goat :(
+                  .modal-footer
+                    a.btn.btn-red(href='#', data-dismiss='modal') Ok, I got it.
+            .span4
+              .well
+                h3 Light Weight Defaults
+                hr
+                span.dropcap 2
+                p
+                  | Bootstrap is designed to help people of all skill level—designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.
+                p
+                  | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster. Bootstrap is built for you.
+                a.btn.btn-red(data-toggle='modal', href='#myModal') Launch Modal
+            .span4
+              .well
+                h3 Simple & Flexible Markup
+                hr
+                p
+                  span.dropcap 3
+                  | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster. Bootstrap is built for you.
+                p
+                  | Bootstrap is designed to help people of all skill level—designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.
+                a.btn.btn-red(data-toggle='modal', href='#myModal') Launch Modal
+          //
+            /row
+        section#contact
+          .row
+            .span12
+              h2
+                em
+                  i.icon-bookmark
+                  | Contact Us
+                a.up.anchorLink(href='#home')
+                  i.icon-chevron-up
+          .row
+            .span4
+              h3 Company Address
+              br
+              .well
+                strong Company:
+                hr
+                p
+                  | Greg L. Denney
+                  br
+                  | 4209 Scenicview Drive
+                  br
+                  | Redmond, WA 98052
+                  br
+                  | Tel.: +1.123.456.789
+                p
+                  | Don't hesitate to contact us about anything you want. We are open to questios, comments and suggestions.
+            .span4
+              h3 Time to keep in touch.
+              br
+              form
+                fieldset
+                  .control-group
+                    label.control-label(for='name') Full Name:
+                    input#name.input-xlarge(type='text')
+                  .control-group
+                    label.control-label(for='email') Valid Email:
+                    input#email.input-xlarge(type='text')
+                  .control-group
+                    label.control-label(for='message') Message:
+                    textarea#message.input-xlarge(rows='3')
+                  button.btn.btn-red(type='submit') Submit Now!
+            //
+              /span
+            .span4
+              h3 How about a map?
+              br
+              img.framed(src='assets/map.png', alt='')
+          //
+            /row
+      //
+        /main content
+      footer
+        .container
+          .row
+            .span2
+              h3 Business Network
+              ul
+                li
+                  a(href='#', title='')
+                    i.icon-external-link
+                    | Company Websites
+                li
+                  a(href='#', title='')
+                    i.icon-external-link
+                    | Subsidiary Websites
+                li
+                  a(href='#', title='')
+                    i.icon-external-link
+                    | Affiliate Websites
+                li
+                  a(href='#', title='')
+                    i.icon-external-link
+                    | Sibling Websites
+            .span2
+              h3 Social Networks
+              ul
+                li
+                  a(href='#', title='')
+                    i.icon-twitter
+                    | Twitter
+                li
+                  a(href='#', title='')
+                    i.icon-facebook
+                    | Facebook
+                li
+                  a(href='#', title='')
+                    i.icon-google-plus
+                    | Google+
+                li
+                  a(href='#', title='')
+                    i.icon-pinterest
+                    | Pinterest
+            .span4
+              h3 Terms and Conditions
+              p
+                | Commercial Use. If you would like to use these graphics in a commercial projects, please go to the commercial use section. Non-profit use.
+              p If you would like to use graphics from psdgraphics.com in a non-profit projects.
+            .span4
+              h3 Newsletter
+              p
+                | Subscribe to our monthly newsletter and be the first to know about our news and special deals!
+              form
+                .controls
+                  .input-append
+                    input(type='text', placeholder='Enter your E-mail')
+                    input.btn.btn-inverse(type='submit', value='Ok')
+            //
+              /span4
+          //
+            /row
+        //
+           /container 
+        .base
+          .container
+            p
+              | Designed by
+              a(href='http://twitter.com/heyallanmoreno', target='_blank') @heyallanmoreno
+              | . All Rights Reserved.
+      script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
+      script
+        window.jQuery || document.write('<script src="js/jquery-1.8.2.min.js"><\\/script>')
+      script(src='js/bootstrap.min.js')
+      script(src='js/jquery.anchor.js', type='text/javascript')
+      script(type='text/javascript', src='fancybox/jquery.fancybox.pack.js?v=2.0.6')
+      script(src='js/script.js')
