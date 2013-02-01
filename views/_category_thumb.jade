@@ -1,0 +1,8 @@
+mixin category_thumb(text)
+  - text = text || 'Unknown Category'
+  .thumbnail
+    a(href="#")
+      img(data-src="js/holder.js/300x200")
+      .caption
+        h1 #{text}
+      img(data-src="js/holder.js/300x200")

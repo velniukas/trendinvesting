@@ -1,0 +1,29 @@
+extends layout
+
+block layout.body
+  body#home(data-spy='scroll', data-target='#primary-nav')
+      mixin header
+
+      ul.thumbnails.center
+        li.span4
+          mixin category_thumb(text='New & Popular')
+        li.span4
+          mixin category_thumb(text='Best Performers')
+        li.span4
+          mixin category_thumb(text='My Watchlist')
+        li.span4
+          mixin category_thumb(text='Macro')
+        li.span4
+          mixin category_thumb(text='Asian Growth')
+        li.span4
+          mixin category_thumb(text='Thematic')
+        li.span4
+          mixin category_thumb(text='Event Driven')
+        li.span4
+          mixin category_thumb(text='Model Driven')
+        li.span4
+          mixin category_thumb(text='Fixed Income')
+
+
+          
+      mixin footer
