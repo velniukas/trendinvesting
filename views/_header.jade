@@ -1,20 +1,28 @@
 mixin header
-  .header
-    .right
-    .left
-      .navbar
-        a.btn.btn-navbar(data-toggle="collapse",data-target=".nav-collapse")
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.brand(href='/')
-          h3
-            span(style='color:orange;') TREND
-            span(style='color:rgb(99, 82, 82);') Investing
-            span(style='color:orange;font-weight:bold;')
+  .navbar.navbar-inverse.navbar-fixed-top
+    .navbar-inner
+      .container
+        a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse') Menu
+        a.brand(href='#home') 
+          span(style='color:orange') TREND
+          span(style='color:white') investing
+        #primary-nav.nav-collapse
+          ul.nav
+            li.active
+              a.anchorLink(href='#home') Home
+            li
+              a.anchorLink(href='#features') Features
+            li
+              a.anchorLink(href='#services') Services
+            li
+              a.anchorLink(href='#portfolio') Portfolio
+            li
+              a.anchorLink(href='#about') About
+            li
+              a.anchorLink(href='#contact') Contact
 
         ul.nav.pull-right.nav-collapse
-            li
-              a(href='/auth')
-                i.icon-user.icon
-                |  Sign In
+          li
+            a(href='/auth')
+              i.icon-user.icon
+              |  Sign In
