@@ -2,7 +2,10 @@ mixin category_thumb(text)
   - text = text || 'Unknown Category'
   .thumbnail
     a(href="#")
-      img(data-src="js/holder.js/300x200")
       .caption
-        h1 #{text}
-      img(data-src="js/holder.js/300x200")
+        h1.pull-left #{text}
+        img.img-polaroid.pull-right(src="http://placekitten.com/100/100", width=100, height=100)
+      p  &nbsp;
+      p  &nbsp;
+      p  &nbsp;
+         p.small some description
