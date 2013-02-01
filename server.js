@@ -16,6 +16,10 @@ app.get('/portfolio', function(req, res) {
 	res.render('portfolio', {title: 'portfolio'});
 });
 
+app.get('/category', function(req, res) {
+	res.render('category', {title: 'category'});
+});
+
 app.listen(3000);
 
 console.log('Trendinvesting running on port 3000');
