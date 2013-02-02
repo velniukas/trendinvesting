@@ -134,8 +134,10 @@ module.exports = function(app) {
   app.post('/user/settings', verifyPermission('user', 'edit'), validation.lookUp(validationConfig.user.profileUpdate), user.settings);
   
   // Folio
-  app.get('/folios', verifyPermission('folio', 'read'), folio.featuredList);
-  app.get('/folios/all', verifyPermission('folio', 'read'), folio.allList);
+  app.get('/folios', folio.featuredList);
+  app.get('/folios/all', folio.allList);
+//  app.get('/folios', verifyPermission('folio', 'read'), folio.featuredList);
+//  app.get('/folios/all', verifyPermission('folio', 'read'), folio.allList);
 
   app.get('/folio/:folioId', verifyPermission('folio', 'read'), folio.show);
   //app.get('/folio/:folioId/start', verifyPermission('folio', 'read'), folio.start);

@@ -1,27 +1,28 @@
+
 extends ../layout
 
 block layout.body
-  //- Course index (Chapter list)
+  //- Folio index (Chapter list)
   .container
     include ../_breadcrumb
-    .container-fluid.course-index.inner-index
+    .container-fluid.folio-index.inner-index
       .row-fluid
         .span4
-          .course-header
-            - if(typeof(course.iconImage) != 'undefined')
-              .course-img
-                img(src='#{course.iconImage}')
+          .folio-header
+            - if(typeof(folio.iconImage) != 'undefined')
+              .folio-img
+                img(src='#{folio.iconImage}')
         .span8
-          .course-content
+          .folio-content
             .row-fluid
-              h1 #{course.title}
-              - var creater = course.created_by ? course.created_by.name : undefined;
+              h1 #{folio.title}
+              - var creater = folio.created_by ? folio.created_by.name : undefined;
               - if(creater)
                 h5 Created By: #{creater}
-              h5 Date: #{course.created_at}
+              h5 Date: #{folio.created_at}
             .row-fluid.detailsBorder
               h3 Description
-              p #{course.desc}
+              p #{folio.desc}
             - if(false)
               .row-fluid.detailsBorder
                 h3 Rating: 
@@ -29,13 +30,13 @@ block layout.body
             - if(progress) 
               - if(progress.status != 'completed')
                 .row-fluid.detailsBorder
-                  h3 Overall Course Progress
+                  h3 Overall Folio Progress
                   .progress.progressTotal
                     .bar(style="width: #{progress.progress}%;")
                 .row-fluid
-                  a.btn.btn-primary.btn-large(href="/course/#{course.id}/continue") Continue
+                  a.btn.btn-primary.btn-large(href="/folio/#{folio.id}/continue") Continue
             - if(!progress)
-                a.btn.btn-primary.btn-large(href="/course/#{course.id}/start") Start
+                a.btn.btn-primary.btn-large(href="/folio/#{folio.id}/start") Start
       .row-fluid
         .span12
 

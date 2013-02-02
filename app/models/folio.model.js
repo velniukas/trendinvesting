@@ -23,7 +23,7 @@ var methods = {
 
     // Remove tags of that folio
     if(folio.tags.length>0) {
-      folio.tags[0].removeAllChapterFromThisFolio(function(error){
+      folio.tags[0].removeAllTagsFromThisFolio(function(error){
         if(error) return callback(error);
         removeFolioImages(callback);
       });

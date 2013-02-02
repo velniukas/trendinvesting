@@ -26,6 +26,8 @@ module.exports.allList = function(req, res, next){
 // List existing featured folios
 module.exports.featuredList = function(req, res, next){
   log.profile('folio.featuredList');
+  console.log('model: '+model);
+  console.log('model.folio: '+model.folio);
   var folio = model.folio;
   
   folio.find({ featured : true }, function(error, folios){
