@@ -1,7 +1,7 @@
 include _header
 include _footer
-include _portfolio_thumb
-include _category_thumb
+include funds/_portfolio_thumb
+include funds/_category_thumb
 
 !!! 5
 html(lang='en')
@@ -13,14 +13,14 @@ head
   meta(name='author', content='Steve Messina steve@10xengineer.me')
   meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
-  link(rel='stylesheet', href='css/bootstrap.min.css')
-  link(rel='stylesheet', href='css/animate.css')
-  link(rel='stylesheet', href='css/font-awesome.css')
-  link(rel='stylesheet', href='fancybox/jquery.fancybox.css?v=2.0.6', media='screen')
-  link(rel='stylesheet', href='css/style.css')
+  link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+  link(rel='stylesheet', href='/stylesheets/animate.css')
+  link(rel='stylesheet', href='/stylesheets/font-awesome.css')
+  link(rel='stylesheet', href='/fancybox/jquery.fancybox.css?v=2.0.6', media='screen')
+  link(rel='stylesheet', href='/stylesheets/style.css')
   //if lt IE 9
-    link(rel='stylesheet', href='css/font-awesome-ie7.css')
-    script(src='js/html5-3.4-respond-1.1.0.min.js')
+    link(rel='stylesheet', href='/stylesheets/font-awesome-ie7.css')
+    script(src='/js/html5-3.4-respond-1.1.0.min.js')
 
 block layout.body
 

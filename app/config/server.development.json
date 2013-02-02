@@ -2,8 +2,8 @@
   "site": {
     "hostname": "localhost:3000",
     "port": 3000,
-    "email": "10xengineer@gmail.com",
-    "pidfile": "/tmp/10xengineer.pid"
+    "email": "steve.g.messina@gmail.com",
+    "pidfile": "/tmp/TRENDinvesting.pid"
   },
   "auth": {
     "twitter": {
@@ -21,28 +21,15 @@
   },
   "db": {
     "address": "mongodb://localhost/",
-    "database": "10xengineer",
+    "database": "TRENDinvesting",
     "schemaVersion": 6
   },
   "mail": {
     "host": "smtp.gmail.com",
-    "username": "10xengineer@gmail.com",
+    "username": "steve.g.messina@gmail.com",
     "password": "password"
-  },
-  "code": {
-    "user": "user",
-    "password": "password",
-    "source_language": "1",
-    "run": true,
-    "is_private": true
   },
   "admin": {
     "twitter": "steve_messina"
-  },
-  "vms": [ 
-    "mysql",
-    "apache2",
-    "tomcat",
-    "apt"
-  ]
+  }
 }
