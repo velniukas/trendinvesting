@@ -35,7 +35,7 @@ var methods = {
 
   removeTag: function(callback) {
     var Tag = model.Tag;
-    var Fund = model.Fund;
+    var Folio = model.Folio;
 
     // TODO: Remove all child 
     Tag.findById(this._id)
@@ -43,13 +43,13 @@ var methods = {
       .exec(function(error, tag){
       if(error) return callback(error);
 
-      // For Remove Tag _Id from Fund Table
-      Fund.findById(tag.fund, function(error, fund){
+      // For Remove Tag _Id from Folio Table
+      Folio.findById(tag.folio, function(error, folio){
         if(error) return callback(error);
 
-        fund.tags.splice(fund.tags.indexOf(tag._id),1);
-        fund.markModified('tags');
-        fund.save(function(error){
+        folio.tags.splice(folio.tags.indexOf(tag._id),1);
+        folio.markModified('tags');
+        folio.save(function(error){
           if(error) return callback(error);
 
           if(tag.lessons.length>0){     
@@ -66,11 +66,11 @@ var methods = {
     });
   },
 
-  removeAllTagFromThisFund: function(callback) {
+  removeAllTagFromThisFolio: function(callback) {
     var Tag = model.Tag;
     var refTag = this;
 
-    Tag.find({fund:refTag.fund})
+    Tag.find({folio:refTag.folio})
       .populate('lessons')
       .exec(function(error, tags){
       if(error) return callback(error);
@@ -80,7 +80,7 @@ var methods = {
           tag.removeTag(forEachCallback);
         }, function(error){
           if(error) return callback(error);
-          Tag.remove({fund:refTag.fund}, callback);
+          Tag.remove({folio:refTag.folio}, callback);
         });
       } else {
         callback();
@@ -93,30 +93,30 @@ var methods = {
 
     var tag = this ;
     var temp;
-    var fund = tag.fund;
-    for (var i = 0 ; i < fund.tags.length; i++) {
-      if(fund.tags[i].toString() == tag._id.toString()) {
+    var folio = tag.folio;
+    for (var i = 0 ; i < folio.tags.length; i++) {
+      if(folio.tags[i].toString() == tag._id.toString()) {
         if(index === 0) {
           if(i-1 >= 0) {
-              temp = fund.tags[i];
-              fund.tags[i] = fund.tags[i-1];
-              fund.tags[i-1] = temp;
+              temp = folio.tags[i];
+              folio.tags[i] = folio.tags[i-1];
+              folio.tags[i-1] = temp;
               break;
             }
         }  
         else if(index == 1) {
         
-          if(i+1 <= fund.tags.length) {
-              temp = fund.tags[i];
-              fund.tags[i] = fund.tags[i+1];
-              fund.tags[i+1] = temp;
+          if(i+1 <= folio.tags.length) {
+              temp = folio.tags[i];
+              folio.tags[i] = folio.tags[i+1];
+              folio.tags[i+1] = temp;
           break;
             }
         }      
       }
     }
-    fund.markModified('tags');
-    fund.save(callback);
+    folio.markModified('tags');
+    folio.save(callback);
   }
 };
 

@@ -9,23 +9,23 @@ module.exports = function(schema, options) {
   schema.post('save', function(callback) {
     var self = this;
     var id = parseInt(self.id.toString());
-    var Fund = model.Fund;
+    var Folio = model.Folio;
     var Tag = model.Tag;
 
-    // Add tag to the fund
+    // Add tag to the folio
     if (self._wasNew) {
       Tag.findOne({ id: id }, function(error, tag) {
         if(error) return callback(error);
 
-        Fund.findById(tag.fund, function(error, fund) {
+        Folio.findById(tag.folio, function(error, folio) {
           if(error) return callback(error);
 
-          if(!fund.tags) {
-            fund.tags = [];
+          if(!folio.tags) {
+            folio.tags = [];
           }
           
-          fund.tags.push(tag._id);
-          fund.save(callback);
+          folio.tags.push(tag._id);
+          folio.save(callback);
         });
       });
     }

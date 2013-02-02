@@ -4,23 +4,23 @@ var model = require('../models');
 
 module.exports = function(app) {
 
-  // Fund
-  app.param('fundId', function(req, res, next, id){
-    var Fund = model.Fund;
+  // Folio
+  app.param('folioId', function(req, res, next, id){
+    var Folio = model.Folio;
     var Tag = model.Tag;
-    Fund.findOne({ id: id })
+    Folio.findOne({ id: id })
       .populate('tags')
       .populate('created_by')
-      .exec(function(error, fund) {
+      .exec(function(error, folio) {
       if(error) return next(error);
 
-    if(fund) {
-          fund.id = parseInt(fund.id.toString(), 10);
+    if(folio) {
+          folio.id = parseInt(folio.id.toString(), 10);
           req.tags = tags;
-          req.fund = fund;
+          req.folio = folio;
 
           req.app.helpers({
-            fund: fund,
+            folio: folio,
             tags: tags
           });
       	}
@@ -35,17 +35,17 @@ module.exports = function(app) {
     var Tag = model.Tag;
 
     Tag.findOne({ id: id })
-      .populate('fund')
+      .populate('folio')
       .exec(function(error, tag) {
       if(error) return next(error);
 
       if(tag) {
         tag.id = parseInt(tag.id.toString(), 10);
         req.tag = tag;
-        req.fund = tag.fund;
+        req.folio = tag.folio;
         req.app.helpers({
           tag: tag,
-          fund: tag.fund
+          folio: tag.folio
         });
       }
 

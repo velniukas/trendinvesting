@@ -12,13 +12,13 @@ module.exports.login = function(req, res, next){
     res.render('users/login', {
       error: error,
       title: 'Log In',
-      fundnav: "N",
+      folionav: "N",
       text: 'TRENDinvesting.'
     });
   } else {
     res.render('users/login', {
       title: 'Log In',
-      fundnav: "N",
+      folionav: "N",
       text: 'TRENDinvesting.'
     });
   }

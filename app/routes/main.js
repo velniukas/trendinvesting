@@ -8,8 +8,8 @@ module.exports = function() {};
 module.exports.home = function(req, res, next){
   res.render('main', {
     title: 'TRENDinvesting Home', 
-    fundnav: "N",
-    Fund: '',
+    folionav: "N",
+    Folio: '',
     Unit: ''
   });
 };
@@ -17,7 +17,7 @@ module.exports.home = function(req, res, next){
 module.exports.about = function(req, res, next){
   res.render('about', {
     title: 'TRENDinvesting About',
-    fundnav: "N",
+    folionav: "N",
     text: 'TRENDinvesting - Creating the next generation of expert developers and engineers.'
   });
 };

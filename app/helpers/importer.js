@@ -11,47 +11,47 @@ var util = require('./util');
 
 module.exports = function() {};
 
-var fund = function(data, callback) {
-  var Fund = model.Fund;
+var folio = function(data, callback) {
+  var Folio = model.Folio;
 
-  var fund = new Fund();
-  fund.title = data.title;
-  fund.desc = data.desc;
-  fund.iconImage = '/cdn/fundIconImage_';
-  fund.wallImage = '/cdn/fundWallImage_';
-  fund.created_by = data.created_by;
+  var folio = new Folio();
+  folio.title = data.title;
+  folio.desc = data.desc;
+  folio.iconImage = '/cdn/folioIconImage_';
+  folio.wallImage = '/cdn/folioWallImage_';
+  folio.created_by = data.created_by;
 
   var iconType, wallType;
 
-  fund.save(function(error) {
+  folio.save(function(error) {
     if(error) {
       log.error(error);
       callback(error);
     }
 
-    Fund.findOne({ id: fund.id }, function(error, dbFund) {
+    Folio.findOne({ id: folio.id }, function(error, dbFolio) {
       if(error) {
         log.error(error);
         callback(error);
       }
-      cdn.saveFileNew('fundIconImage_'+dbFund.id, data.iconImage, mime.lookup(data.iconImage), function(err, iconImage){
+      cdn.saveFileNew('folioIconImage_'+dbFolio.id, data.iconImage, mime.lookup(data.iconImage), function(err, iconImage){
         if (err) {
           console.log("Icon Image can't saved...");
-          return callback(null, dbFund);
+          return callback(null, dbFolio);
         }
         else {
-          cdn.saveFileNew('fundWallImage_'+dbFund.id, data.wallImage, mime.lookup(data.wallImage), function(err, wallImage){
+          cdn.saveFileNew('folioWallImage_'+dbFolio.id, data.wallImage, mime.lookup(data.wallImage), function(err, wallImage){
             if(err){
               console.log("Not saved wall image");
-              return callback(null, dbFund);
+              return callback(null, dbFolio);
             }
-            dbFund.iconImage = iconImage;
-            dbFund.wallImage = wallImage;
-            dbFund.save(function(err){
+            dbFolio.iconImage = iconImage;
+            dbFolio.wallImage = wallImage;
+            dbFolio.save(function(err){
               if(err){
                 console.log("Error in second time save.");
               }
-              return callback(null, dbFund);
+              return callback(null, dbFolio);
             });
           });
         }
@@ -61,13 +61,13 @@ var fund = function(data, callback) {
   });
 };
 
-var tag = function(data, fundId, callback) {
+var tag = function(data, folioId, callback) {
   var Tag = model.Tag;
 
   var tag = new Tag();
   tag.title = data.title;
   tag.desc = data.desc;
-  tag.fund = fundId;
+  tag.folio = folioId;
 
   tag.save(function(error) {
     if(error) {
@@ -279,29 +279,29 @@ module.exports.questions = function(quesitonRow, callback) {
   // }
 }
 
-module.exports.exportFullFund = function(fund, next){
+module.exports.exportFullFolio = function(folio, next){
   var Lesson    = model.Lesson;
 
-  var fund_dir = util.string.random(15);
-  var data_fund = '';
-  data_fund     = "title: " + fund.title + "\n";
-  data_fund    += "desc: " + fund.desc;
+  var folio_dir = util.string.random(15);
+  var data_folio = '';
+  data_folio     = "title: " + folio.title + "\n";
+  data_folio    += "desc: " + folio.desc;
   exp_path        = 'app/upload';
 
-  save_file_for_export(exp_path, fund_dir, 'fund', data_fund, function(error) {
+  save_file_for_export(exp_path, folio_dir, 'folio', data_folio, function(error) {
     if(error){
       console.log(error);
       return next(error);
     } else {
-      var tags = fund.tags;
-      var chap_path = exp_path + '/' + fund_dir;
+      var tags = folio.tags;
+      var chap_path = exp_path + '/' + folio_dir;
       var chap_count = 0;
-      iconfile = fund.iconImage.substring(5, fund.iconImage.length);
+      iconfile = folio.iconImage.substring(5, folio.iconImage.length);
       async.parallel([
         function(asyncParallelCB){
           // Icon image load
-          log.info("Saving fund images...");
-          load_resources(exp_path+'/'+fund_dir, 'icon', iconfile, function(err){
+          log.info("Saving folio images...");
+          load_resources(exp_path+'/'+folio_dir, 'icon', iconfile, function(err){
             if(err){
               console.log("Error...");
               return asyncParallelCB(error);
@@ -310,8 +310,8 @@ module.exports.exportFullFund = function(fund, next){
           });          
         },
         function(asyncParallelCB){
-          wallFile = fund.wallImage.substring(5, fund.wallImage.length);
-          load_resources(exp_path+'/'+fund_dir, 'wall', wallFile, function(err){
+          wallFile = folio.wallImage.substring(5, folio.wallImage.length);
+          load_resources(exp_path+'/'+folio_dir, 'wall', wallFile, function(err){
             if(err){
               console.log("Error...");
               return asyncParallelCB(error);
@@ -367,24 +367,24 @@ module.exports.exportFullFund = function(fund, next){
             return next(error);
           }
           exp_path = path.resolve(exp_path);
-          log.info("Fund data dumped on disk", exp_path);
-          fs.readdir(exp_path+'/'+fund_dir, function(error, files){
+          log.info("Folio data dumped on disk", exp_path);
+          fs.readdir(exp_path+'/'+folio_dir, function(error, files){
             if(error){
               return next(error);
             }
-            var args = [ "-r", fund.title + ".zip"];
+            var args = [ "-r", folio.title + ".zip"];
             args = args.concat(files);
             log.info("Compressing the exported data.");
-            var zip = spawn("zip", args, { cwd: exp_path+'/'+fund_dir });
+            var zip = spawn("zip", args, { cwd: exp_path+'/'+folio_dir });
             zip.stderr.on('data', function (data) {
               console.log('ZIP stderr: ' + data);
             });
             zip.on('exit', function (code) {
-              log.info('Finished compressing fund.');
+              log.info('Finished compressing folio.');
               if(code != 0) {
                 log.error("Error compressing file.");
               }
-              return next(null, exp_path+'/'+fund_dir, fund.title);
+              return next(null, exp_path+'/'+folio_dir, folio.title);
             });
           });
         }
@@ -418,7 +418,7 @@ var sort_lessons = function(lessons, sequence, callback){
 */
 var save_file_for_export = function(path, dir_name, file_name, data, callback){
 
-  log.info("Dumping fund metadata to file.");
+  log.info("Dumping folio metadata to file.");
   fs.mkdir(path + '/' + dir_name, 0777, function(error){
     if(error){
       return callback(error);
@@ -555,13 +555,13 @@ var quiz_lesson_exp = function(full_path, lesson, data, count, callback) {
   });
 }
 
-module.exports.importFullFund = function(file, user, callback){
+module.exports.importFullFolio = function(file, user, callback){
   var random_dir = util.string.random(15);
   var imp_path = path.resolve("app/upload");
 
   fs.mkdir(imp_path+'/'+random_dir, function(){
     imp_path = path.resolve(imp_path+'/'+random_dir);
-    log.info("Extracting fund zip.");
+    log.info("Extracting folio zip.");
     var unzip    = spawn("unzip",[ file.path ], { cwd: imp_path });
 
     unzip.stderr.on('data', function (data) {
@@ -573,10 +573,10 @@ module.exports.importFullFund = function(file, user, callback){
         log.error('Error while extracting file.');
       }
       
-      // Create fund from imported fund
+      // Create folio from imported folio
       fs.readdir(imp_path, function(err, files){
-        log.info("Importing fund.");
-        extract_fund_from_imported_dir(imp_path, user, function(){
+        log.info("Importing folio.");
+        extract_folio_from_imported_dir(imp_path, user, function(){
           log.info("Cleaning up.");
           rimraf(imp_path, function(err){
             if(err) {
@@ -592,9 +592,9 @@ module.exports.importFullFund = function(file, user, callback){
 };
 
 
-var extract_fund_from_imported_dir = function(fund_dir, user, callback){
-  var fund_doc = require(fund_dir+'/fund.yml');
-  fs.readdir(fund_dir + '/resources/', function(err, files){
+var extract_folio_from_imported_dir = function(folio_dir, user, callback){
+  var folio_doc = require(folio_dir+'/folio.yml');
+  fs.readdir(folio_dir + '/resources/', function(err, files){
     var iconImg, wallImg;
     for (var i = 0; i < files.length ; i++) {
       var regExIco = new RegExp("^icon");
@@ -605,27 +605,27 @@ var extract_fund_from_imported_dir = function(fund_dir, user, callback){
         wallImg = files[i];
       } else continue;
      }; 
-    fund_doc.iconImage = fund_dir + '/resources/' + iconImg; 
-    fund_doc.wallImage = fund_dir + '/resources/' + wallImg; 
-    fund_doc.created_by = user._id;
-    fund(fund_doc, function(err, saved_fund){
+    folio_doc.iconImage = folio_dir + '/resources/' + iconImg; 
+    folio_doc.wallImage = folio_dir + '/resources/' + wallImg; 
+    folio_doc.created_by = user._id;
+    folio(folio_doc, function(err, saved_folio){
       if(err){
         console.log(err);
         return callback(err);
       }
-      return extracts_tags(fund_dir, saved_fund, callback);
+      return extracts_tags(folio_dir, saved_folio, callback);
     });
   });
 };
 
-var extracts_tags = function(fund_dir, fund, callback) {
-  fs.readdir(fund_dir, function(err, files){
+var extracts_tags = function(folio_dir, folio, callback) {
+  fs.readdir(folio_dir, function(err, files){
     async.forEachSeries(files, function(chap, forEachCB){
       var regEx = new RegExp("^tag");
       if(regEx.test(chap)){
-        chap_doc = require(fund_dir+'/'+chap+'/'+chap+'.yml');
-        tag(chap_doc, fund._id, function(err, dbChap){
-          extracts_lessons(fund_dir+'/'+chap, dbChap, forEachCB);
+        chap_doc = require(folio_dir+'/'+chap+'/'+chap+'.yml');
+        tag(chap_doc, folio._id, function(err, dbChap){
+          extracts_lessons(folio_dir+'/'+chap, dbChap, forEachCB);
         });
       }
       else forEachCB();

@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	ObjectId = Schema.ObjectId;
 	
-var fundSchema = module.exports = new Schema({
+var folioSchema = module.exports = new Schema({
 	_id : { type: ObjectId }, 
 	title: { type: String, index: true, trim: true, required: true },
 	desc: { type: String },
@@ -13,5 +13,5 @@ var fundSchema = module.exports = new Schema({
 	featured: { type: Boolean, default: 'true' },
 	tags: [{ type: ObjectId, ref: 'Tag' }] 
 }, {
-	collection: 'funds'
+	collection: 'folios'
 });

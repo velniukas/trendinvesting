@@ -1,14 +1,14 @@
-// Fund Configs
-module.exports.fund = {
+// Folio Configs
+module.exports.folio = {
 
-	createFund : {
+	createFolio : {
 		title : {required: true},
 		description : {required : true},
 		iconImage : {required:true},
 		wallImage : {required:true}
 	},
 
-	editFund : {
+	editFolio : {
 		title : {required: true},
 		description : {required : true},
 		iconImage : {required:true},

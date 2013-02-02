@@ -10,40 +10,40 @@ var util = require('../helpers/util');
 
 module.exports = function() {};
 
-// List existing all funds
+// List existing all folios
 module.exports.allList = function(req, res, next){
-  var fund = model.fund;
+  var folio = model.folio;
 
-  fund.find({}, function(error, funds){
+  folio.find({}, function(error, folios){
     if(error) return next(error);
-    res.render('funds/allList', { 
-      title: 'funds',
-      funds: funds
+    res.render('folios/allList', { 
+      title: 'folios',
+      folios: folios
     });
   });
 };
 
-// List existing featured funds
+// List existing featured folios
 module.exports.featuredList = function(req, res, next){
-  log.profile('fund.featuredList');
-  var fund = model.fund;
+  log.profile('folio.featuredList');
+  var folio = model.folio;
   
-  fund.find({ featured : true }, function(error, funds){
+  folio.find({ featured : true }, function(error, folios){
     if(error) return next(error);
-      log.profile('fund.featuredList');
-      res.render('funds', { 
-        title: 'funds',
-        funds: funds
+      log.profile('folio.featuredList');
+      res.render('folios', { 
+        title: 'folios',
+        folios: folios
       });
     });
 };
 
-// Register for a fund (if not already registered, and Go to the last viewed or first lesson. 
-/* TODO refactor for fund subscription model
+// Register for a folio (if not already registered, and Go to the last viewed or first lesson. 
+/* TODO refactor for folio subscription model
 module.exports.start = function(req, res, next){
-  // Check if user has already started the fund
+  // Check if user has already started the folio
   var Progress = model.Progress;
-  Progress.startOrContinue(req.user, req.fund, function(error, progress) {
+  Progress.startOrContinue(req.user, req.folio, function(error, progress) {
     if(error) return next(error);
     // Redirect the user to first unfinished lesson
     progress.getNextLesson(function(error, nextLesson) {
@@ -54,12 +54,12 @@ module.exports.start = function(req, res, next){
 };
 */
 
-// Load specific fund and display tag index
+// Load specific folio and display tag index
 module.exports.show = function(req, res, next){
 
     if(error) return next(error);
-    res.render('funds/fundDetails', {
-      title     : req.fund.title,
+    res.render('folios/folioDetails', {
+      title     : req.folio.title,
       tag   : undefined,
       index     : 0
     });

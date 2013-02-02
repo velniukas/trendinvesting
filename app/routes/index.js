@@ -1,8 +1,8 @@
 var _ = require('lodash');
 
 var main = require('./main');
-var fund = require('./fund');
-var fund_editor = require('./fund_editor');
+var folio = require('./folio');
+var folio_editor = require('./folio_editor');
 var admin = require('./admin');
 var user = require('./user');
 var cdn = require('./cdn');
@@ -10,7 +10,7 @@ var cdn = require('./cdn');
 var auth = require('../middleware/authentication');
 var validation = require('../middleware/validation');
 // TODO refactor 
-//var fundSubscription = require('../middleware/fundSubscription');
+//var folioSubscription = require('../middleware/folioSubscription');
 var ability = require('../helpers/ability');
 var validationConfig = require('../helpers/validationConfig');
 
@@ -50,13 +50,13 @@ var accessPermission = function(req, res, next) {
 };
 
 /* TODO refactor
-var verifyFundSubscription = function(req, res, next) {
-  var fund = req.lesson.tag.fund;
+var verifyFolioSubscription = function(req, res, next) {
+  var folio = req.lesson.tag.folio;
   var user   = req.user._id;
-  if(typeof(fund) == 'undefined' || typeof(user) == 'undefined') {
+  if(typeof(folio) == 'undefined' || typeof(user) == 'undefined') {
     res.redirect('/');
   } else {
-    fundSubscription.verifyUser(fund, user, function(err){
+    folioSubscription.verifyUser(folio, user, function(err){
       if(err){
         console.error(err);
         res.redirect('/');
@@ -88,7 +88,7 @@ module.exports = function(app) {
   });
 
   // Convert a parameter to integer
-  app.param(['fundId', 'tagId', 'userId'], function(req, res, next, num, name){ 
+  app.param(['folioId', 'tagId', 'userId'], function(req, res, next, num, name){ 
     var parsedNum = parseInt(num, 10);
     if( isNaN(num) ){
       next(new Error('Invalid route: ' + num));
@@ -133,42 +133,42 @@ module.exports = function(app) {
   app.get('/user/settings', verifyPermission('user', 'edit'), user.settingsView);
   app.post('/user/settings', verifyPermission('user', 'edit'), validation.lookUp(validationConfig.user.profileUpdate), user.settings);
   
-  // Fund
-  app.get('/funds', verifyPermission('fund', 'read'), fund.featuredList);
-  app.get('/funds/all', verifyPermission('fund', 'read'), fund.allList);
+  // Folio
+  app.get('/folios', verifyPermission('folio', 'read'), folio.featuredList);
+  app.get('/folios/all', verifyPermission('folio', 'read'), folio.allList);
 
-  app.get('/fund/:fundId', verifyPermission('fund', 'read'), fund.show);
-  //app.get('/fund/:fundId/start', verifyPermission('fund', 'read'), fund.start);
-  //app.get('/fund/:fundId/continue', verifyPermission('fund', 'read'), fund.start);
+  app.get('/folio/:folioId', verifyPermission('folio', 'read'), folio.show);
+  //app.get('/folio/:folioId/start', verifyPermission('folio', 'read'), folio.start);
+  //app.get('/folio/:folioId/continue', verifyPermission('folio', 'read'), folio.start);
 
-  // Fund Editor
+  // Folio Editor
 
-  // Fund oprations
-  /*app.get('/fund_editor', verifyPermission('fund', 'read'), fund_editor.fundsList);
-  app.get('/fund_editor/create', verifyPermission('fund', 'edit'), fund_editor.createView);
-  app.post('/fund_editor/create', verifyPermission('fund', 'edit'),  validation.lookUp(validationConfig.fund.createFund), fund_editor.create);
-  app.get('/fund_editor/import',  verifyPermission('fund', 'edit'), fund_editor.importView);
-  app.post('/fund_editor/import',  verifyPermission('fund', 'edit'), fund_editor.importFund);
-  app.get('/fund_editor/fund/:fundId', verifyPermission('fund', 'read'), fund_editor.fund);
-  app.get('/fund_editor/fund/:fundId/edit', verifyPermission('fund', 'edit'), fund_editor.updateView);
-  app.get('/fund_editor/fund/:fundId/export', verifyPermission('fund', 'edit'), fund_editor.exportFund);
-  app.post('/fund_editor/fund/:fundId/edit', verifyPermission('fund', 'edit'),  validation.lookUp(validationConfig.fund.editFund), fund_editor.update);
-  app.get('/fund_editor/fund/:fundId/remove', verifyPermission('fund', 'delete'), fund_editor.remove);
-  app.get('/fund_editor/fund/:fundId/publish', verifyPermission('fund', 'publish'), fund_editor.publish);
-  app.get('/fund_editor/fund/:fundId/unpublish', verifyPermission('fund', 'publish'), fund_editor.unpublish);
-  app.get('/fund_editor/fund/:fundId/featured', verifyPermission('fund', 'publish'), fund_editor.featured);
-  app.get('/fund_editor/fund/:fundId/unfeatured', verifyPermission('fund', 'publish'), fund_editor.unfeatured);
+  // Folio oprations
+  /*app.get('/folio_editor', verifyPermission('folio', 'read'), folio_editor.foliosList);
+  app.get('/folio_editor/create', verifyPermission('folio', 'edit'), folio_editor.createView);
+  app.post('/folio_editor/create', verifyPermission('folio', 'edit'),  validation.lookUp(validationConfig.folio.createFolio), folio_editor.create);
+  app.get('/folio_editor/import',  verifyPermission('folio', 'edit'), folio_editor.importView);
+  app.post('/folio_editor/import',  verifyPermission('folio', 'edit'), folio_editor.importFolio);
+  app.get('/folio_editor/folio/:folioId', verifyPermission('folio', 'read'), folio_editor.folio);
+  app.get('/folio_editor/folio/:folioId/edit', verifyPermission('folio', 'edit'), folio_editor.updateView);
+  app.get('/folio_editor/folio/:folioId/export', verifyPermission('folio', 'edit'), folio_editor.exportFolio);
+  app.post('/folio_editor/folio/:folioId/edit', verifyPermission('folio', 'edit'),  validation.lookUp(validationConfig.folio.editFolio), folio_editor.update);
+  app.get('/folio_editor/folio/:folioId/remove', verifyPermission('folio', 'delete'), folio_editor.remove);
+  app.get('/folio_editor/folio/:folioId/publish', verifyPermission('folio', 'publish'), folio_editor.publish);
+  app.get('/folio_editor/folio/:folioId/unpublish', verifyPermission('folio', 'publish'), folio_editor.unpublish);
+  app.get('/folio_editor/folio/:folioId/featured', verifyPermission('folio', 'publish'), folio_editor.featured);
+  app.get('/folio_editor/folio/:folioId/unfeatured', verifyPermission('folio', 'publish'), folio_editor.unfeatured);
   // Tag oprations 
-  app.get('/fund_editor/tag/create/:fundId', verifyPermission('fund', 'edit'), fund_editor.tagCreateView);
-  app.post('/fund_editor/tag/create/:fundId', verifyPermission('fund', 'edit'), validation.lookUp(validationConfig.tag.createTag), fund_editor.tagCreate);
-  app.get('/fund_editor/tag/:tagId', verifyPermission('fund', 'read'), fund_editor.tagView);
-  app.get('/fund_editor/tag/:tagId/edit', verifyPermission('fund', 'edit'), fund_editor.tagEditView);
-  app.post('/fund_editor/tag/:tagId/edit', verifyPermission('fund', 'edit'), validation.lookUp(validationConfig.tag.editTag), fund_editor.tagEdit);
-  app.get('/fund_editor/tag/:tagId/remove', verifyPermission('fund', 'delete'), fund_editor.tagRemove);
-  app.get('/fund_editor/tag/:tagId/publish', verifyPermission('fund', 'publish'), fund_editor.tagPublish);
-  app.get('/fund_editor/tag/:tagId/unpublish', verifyPermission('fund', 'publish'), fund_editor.tagUnpublish);
-  app.get('/fund_editor/tag/:tagId/up', verifyPermission('fund', 'edit'), fund_editor.tagUp);
-  app.get('/fund_editor/tag/:tagId/down', verifyPermission('fund', 'edit'), fund_editor.tagDown);
+  app.get('/folio_editor/tag/create/:folioId', verifyPermission('folio', 'edit'), folio_editor.tagCreateView);
+  app.post('/folio_editor/tag/create/:folioId', verifyPermission('folio', 'edit'), validation.lookUp(validationConfig.tag.createTag), folio_editor.tagCreate);
+  app.get('/folio_editor/tag/:tagId', verifyPermission('folio', 'read'), folio_editor.tagView);
+  app.get('/folio_editor/tag/:tagId/edit', verifyPermission('folio', 'edit'), folio_editor.tagEditView);
+  app.post('/folio_editor/tag/:tagId/edit', verifyPermission('folio', 'edit'), validation.lookUp(validationConfig.tag.editTag), folio_editor.tagEdit);
+  app.get('/folio_editor/tag/:tagId/remove', verifyPermission('folio', 'delete'), folio_editor.tagRemove);
+  app.get('/folio_editor/tag/:tagId/publish', verifyPermission('folio', 'publish'), folio_editor.tagPublish);
+  app.get('/folio_editor/tag/:tagId/unpublish', verifyPermission('folio', 'publish'), folio_editor.tagUnpublish);
+  app.get('/folio_editor/tag/:tagId/up', verifyPermission('folio', 'edit'), folio_editor.tagUp);
+  app.get('/folio_editor/tag/:tagId/down', verifyPermission('folio', 'edit'), folio_editor.tagDown);
 */
   // CDN
   app.get('/cdn/:fileName', cdn.load);

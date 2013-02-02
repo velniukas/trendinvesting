@@ -18,111 +18,111 @@ var util = require('../helpers/util');
 /*********************************************
 **********************************************
 **                                          **
-**  Fund Operations                       **
+**  Folio Operations                       **
 **                                          **
 **********************************************
 *********************************************/
 
 
 /************************************
-** Show Main Page of Fund Editor **
+** Show Main Page of Folio Editor **
 ************************************/
-module.exports.fundsList = function(req, res, next){
-  var Fund = model.Fund;
+module.exports.foliosList = function(req, res, next){
+  var Folio = model.Folio;
   if(typeof(req.user)=='undefined'){
     return res.redirect('/');
   }
-  Fund.find({})
+  Folio.find({})
     .populate('created_by')
-    .exec(function(error, funds) {
+    .exec(function(error, folios) {
       if(error) return next(error);
-      res.render('fund_editor', {
-        funds : funds,
+      res.render('folio_editor', {
+        folios : folios,
         user: req.user
       });
   });
 };
 
 /************************************
-** Create fund view              **
+** Create folio view              **
 ************************************/
 module.exports.createView = function(req, res, next){
-  res.render('fund_editor/fund/create', {
-    title: 'New Fund',
-    fund: {_id:'',title:'',description:''}
+  res.render('folio_editor/folio/create', {
+    title: 'New Folio',
+    folio: {_id:'',title:'',description:''}
   });
 };
 
 /************************************
-** Submit created fund           **
+** Submit created folio           **
 ************************************/
 module.exports.create = function(req, res, next){
-  var Fund = model.Fund;
+  var Folio = model.Folio;
 
-  var fund = new Fund();
-  fund.title = req.body.title;
-  fund.desc = req.body.description;
-  fund.iconImage = req.body.iconImage;
-  fund.cropIconImgInfo = req.body.cropIconImgInfo;
-  fund.wallImage = req.body.wallImage;
-  fund.cropWallImgInfo = req.body.cropWallImgInfo;
-  fund.created_by = req.user._id;
+  var folio = new Folio();
+  folio.title = req.body.title;
+  folio.desc = req.body.description;
+  folio.iconImage = req.body.iconImage;
+  folio.cropIconImgInfo = req.body.cropIconImgInfo;
+  folio.wallImage = req.body.wallImage;
+  folio.cropWallImgInfo = req.body.cropWallImgInfo;
+  folio.created_by = req.user._id;
 
-  // Saves Created Fund
-  fund.save(function(error) {
+  // Saves Created Folio
+  folio.save(function(error) {
     if(error) return next(error);
 
-    var id = fund.id;
+    var id = folio.id;
 
-    //Set the fund info in the session to let socket.io know about it.
-    req.session.newFund = {title: fund.title, _id: fund._id};
-    req.session.message = "Fund created successfully.";
-    res.redirect('/fund_editor/fund/' + id);
+    //Set the folio info in the session to let socket.io know about it.
+    req.session.newFolio = {title: folio.title, _id: folio._id};
+    req.session.message = "Folio created successfully.";
+    res.redirect('/folio_editor/folio/' + id);
   });
 
 };
 
 /************************************
-** Show a single fund            **
+** Show a single folio            **
 ************************************/
-module.exports.fund = function(req, res, next){
+module.exports.folio = function(req, res, next){
 
-  res.render('fund_editor/fund', {
-    title: req.fund.title,
+  res.render('folio_editor/folio', {
+    title: req.folio.title,
     tag: undefined,
     index :0
   });
 };
 
 /************************************
-** Show import fund view         **
+** Show import folio view         **
 ************************************/
 module.exports.importView = function(req, res, next){
-  res.render('fund_editor/fund/importView');
+  res.render('folio_editor/folio/importView');
 };
 
 /**************************************************
-**   Edit / Update Fund View                   **
+**   Edit / Update Folio View                   **
 **************************************************/
 module.exports.updateView = function(req, res, next){
-  res.render('fund_editor/fund/edit', {
-    title: req.fund.title
+  res.render('folio_editor/folio/edit', {
+    title: req.folio.title
   });
 };
 
 /**************************************************
-**  Submit updation of fund                    **
+**  Submit updation of folio                    **
 **************************************************/
 module.exports.update = function(req, res, next){
-  var fund = req.fund;
-  fund.title = req.body.title;
-  fund.desc = req.body.description;
-  fund.image = req.body.image;
+  var folio = req.folio;
+  folio.title = req.body.title;
+  folio.desc = req.body.description;
+  folio.image = req.body.image;
 
-  fund.save(function(error) {
+  folio.save(function(error) {
     if(error) return next(error);
-    req.session.message = "Fund updated sucessfully.";
-    res.redirect('/fund_editor/fund/' + fund.id);
+    req.session.message = "Folio updated sucessfully.";
+    res.redirect('/folio_editor/folio/' + folio.id);
   });
 };
 
@@ -130,60 +130,60 @@ module.exports.update = function(req, res, next){
 module.exports.remove = function(req, res, next){
   var Progress = model.Progress;
 
-  var fund = req.fund;
-  var fund_id = fund._id;
+  var folio = req.folio;
+  var folio_id = folio._id;
 
-  fund.removeFund(function(error){
+  folio.removeFolio(function(error){
     if(error) return next(error);
-    Progress.removeFundProgress(fund_id, function(error){
+    Progress.removeFolioProgress(folio_id, function(error){
       if(error) return next(error);
-      req.session.message = "Sucessfully fund removed.";
-      res.redirect('/fund_editor');
+      req.session.message = "Sucessfully folio removed.";
+      res.redirect('/folio_editor');
     });
   });
 };
 
-// Publish a fund
+// Publish a folio
 module.exports.publish = function(req, res, next) {
-  var fund = req.fund;
+  var folio = req.folio;
 
-  fund.publish(true, function(error) {
+  folio.publish(true, function(error) {
     if(error) return next(error);
-    req.session.message = "Fund published sucessfully.";
-    res.redirect('/fund_editor');
+    req.session.message = "Folio published sucessfully.";
+    res.redirect('/folio_editor');
   });
 };
 
-// unpublish a fund
+// unpublish a folio
 module.exports.unpublish = function(req, res, next) {
-  var fund = req.fund;
+  var folio = req.folio;
   
-  fund.publish(false, function(error) {
+  folio.publish(false, function(error) {
     if(error) return next(error);
-    req.session.message = "Fund unpublished sucessfully.";
-    res.redirect('/fund_editor');
+    req.session.message = "Folio unpublished sucessfully.";
+    res.redirect('/folio_editor');
   });
 
 };
 
-// Featured a fund
+// Featured a folio
 module.exports.featured = function(req, res, next) {
-  var fund = req.fund;
-  fund.setFeatured(true, function(error) {
+  var folio = req.folio;
+  folio.setFeatured(true, function(error) {
     if(error) return next(error);
-    req.session.message = "Fund featured sucessfully.";
-    res.redirect('/fund_editor');
+    req.session.message = "Folio featured sucessfully.";
+    res.redirect('/folio_editor');
   });
 };
 
-// Unfeatured a fund
+// Unfeatured a folio
 module.exports.unfeatured = function(req, res, next) {
-  var fund = req.fund;
+  var folio = req.folio;
   
-  fund.setFeatured(false, function(error) {
+  folio.setFeatured(false, function(error) {
     if(error) return next(error);
-    req.session.message = "Fund unfeatured sucessfully.";
-    res.redirect('/fund_editor');
+    req.session.message = "Folio unfeatured sucessfully.";
+    res.redirect('/folio_editor');
   });
 };
 
@@ -195,13 +195,13 @@ module.exports.unfeatured = function(req, res, next) {
 *********************************************/
 
 module.exports.tagView = function (req, res, next) {
-  res.render('fund_editor/tag', {
+  res.render('folio_editor/tag', {
     title: req.tag.title
   });
 };
 
 module.exports.tagEditView = function(req, res, next) {
-  res.render('fund_editor/tag/edit', {
+  res.render('folio_editor/tag/edit', {
     title: req.tag.title
   });
 };
@@ -216,14 +216,14 @@ module.exports.tagEdit = function(req, res, next){
   tag.save(function(error) {
     if(error) return next(error);
     req.session.message = "Chaper updated sucessfully.";
-    res.redirect('/fund_editor/tag/' + tag.id);
+    res.redirect('/folio_editor/tag/' + tag.id);
   });
 };
 
 
 // Create new tag form
 module.exports.tagCreateView = function(req, res, next){
-  res.render('fund_editor/tag/create', {
+  res.render('folio_editor/tag/create', {
     title: 'New Tag',
     tag: {id: '', title: ''}
   });
@@ -236,26 +236,26 @@ module.exports.tagCreate = function(req, res, next){
   var tag = new Tag();
   tag.title = req.body.title;
   tag.desc = req.body.description;
-  tag.fund = req.fund._id;
+  tag.folio = req.folio._id;
   tag.created_by = req.user.id;
 
   tag.save(function(error) {
     if(error) return next(error);
 
     req.session.message = "Chaper created sucessfully.";
-    res.redirect('/fund_editor/fund/' + req.fund.id);
+    res.redirect('/folio_editor/folio/' + req.folio.id);
   });
 };
 
 module.exports.tagRemove = function(req, res, next) {
 
   var tag = req.tag;
-  var fundId =req.tag.fund.id;
+  var folioId =req.tag.folio.id;
 
   tag.removeTag(function(error) {
     if(error) return next(error);
     req.session.message = "Chaper deleted sucessfully.";
-    res.redirect('/fund_editor/fund/'+ fundId);
+    res.redirect('/folio_editor/folio/'+ folioId);
   });
 };
 
@@ -266,7 +266,7 @@ module.exports.tagPublish = function(req, res, next) {
   tag.publish(true, function(error) {
     if(error) return next(error);
     req.session.message = "Tag published sucessfully.";
-    res.redirect('/fund_editor/fund/' + tag.fund.id);
+    res.redirect('/folio_editor/folio/' + tag.folio.id);
   });
 };
 
@@ -276,7 +276,7 @@ module.exports.tagUnpublish = function(req, res, next) {
   tag.publish(false, function(error) {
     if(error) return next(error);
     req.session.message = "Tag unpublished sucessfully.";
-    res.redirect('/fund_editor/fund/' + tag.fund.id);
+    res.redirect('/folio_editor/folio/' + tag.folio.id);
   });
 };
 
@@ -289,7 +289,7 @@ module.exports.tagUp = function(req, res, next){
   tag.move(0, function(error) {
     if(error) return next(error);
     req.session.message = "Chaper moved sucessfully.";
-    res.redirect('/fund_editor/fund/' + tag.fund.id);
+    res.redirect('/folio_editor/folio/' + tag.folio.id);
   });
 };
 
@@ -299,7 +299,7 @@ module.exports.tagDown = function(req, res, next){
   tag.move(1, function(error) {
     if(error) return next(error);
     req.session.message = "Chaper moved sucessfully.";
-    res.redirect('/fund_editor/fund/' + tag.fund.id);
+    res.redirect('/folio_editor/folio/' + tag.folio.id);
   });
 };
 */
@@ -308,14 +308,14 @@ module.exports.tagDown = function(req, res, next){
 /*********************************************
 **********************************************
 **                                          **
-**  Export Fund                           **
+**  Export Folio                           **
 **                                          **
 **********************************************
 *********************************************/
 
-module.exports.exportFund = function(req, res, next) {
+module.exports.exportFolio = function(req, res, next) {
 
-  importer.exportFullFund(req.fund, function(error, path, title){
+  importer.exportFullFolio(req.folio, function(error, path, title){
       if(error) return next(error);
       res.setHeader('Content-Disposition', 'attachment; filename=' + title + '.zip');
       res.setHeader('Content-Type', 'application/zip');
@@ -336,19 +336,19 @@ module.exports.exportFund = function(req, res, next) {
 /*********************************************
 **********************************************
 **                                          **
-**  Import Fund                           **
+**  Import Folio                           **
 **                                          **
 **********************************************
 *********************************************/
 
-module.exports.importFund = function(req, res, next) {
+module.exports.importFolio = function(req, res, next) {
 
   // UnZip imported file
-  var file = req.files['fund-file'];
-  importer.importFullFund(file, req.user, function(error){
+  var file = req.files['folio-file'];
+  importer.importFullFolio(file, req.user, function(error){
     if(error) return next(error);
-    req.session.message = "Fund imported successfully.";
-    res.redirect('/fund_editor'); 
+    req.session.message = "Folio imported successfully.";
+    res.redirect('/folio_editor'); 
   });
 
 };

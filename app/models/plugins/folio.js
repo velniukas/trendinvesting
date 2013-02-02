@@ -10,28 +10,28 @@ var cdn = require('../../helpers/cdn');
 
 module.exports = function(schema, options) {
   schema.pre('save', function(callback) {
-    var fund = this;
+    var folio = this;
     var regex = new RegExp('^/cdn/');
     var options = {processIcon: false, processWall: false};
 
-    if(!regex.test(fund.iconImage)) {
+    if(!regex.test(folio.iconImage)) {
       options.processIcon = true;
     }
-    if(!regex.test(fund.wallImage)) {
+    if(!regex.test(folio.wallImage)) {
       options.processWall = true;
     }
 
     // Save image
-    processImages(fund, options, callback);
+    processImages(folio, options, callback);
   });
 
 };
 
 
-var processImages = function (fund, options, callback) {
+var processImages = function (folio, options, callback) {
   var now = new Date();
-  var iconFileName = 'fundIconImage_' + fund.id;
-  var wallFileName = 'fundWallImage_' + fund.id;
+  var iconFileName = 'folioIconImage_' + folio.id;
+  var wallFileName = 'folioWallImage_' + folio.id;
   var iconCropInfo = {
     "x": 0,
     "y": 0,
@@ -59,28 +59,28 @@ var processImages = function (fund, options, callback) {
 
   var jobs = {};
   if(options.processIcon) {
-    iconCropInfo = fund.cropIconImgInfo || iconCropInfo;
+    iconCropInfo = folio.cropIconImgInfo || iconCropInfo;
     if(typeof(iconCropInfo) == 'string') {
       iconCropInfo = JSON.parse(iconCropInfo);
     }
-    jobs['icon'] = imageJob(fund.iconImage, iconFileName, {crop: iconCropInfo, resize: iconResizeInfo});
+    jobs['icon'] = imageJob(folio.iconImage, iconFileName, {crop: iconCropInfo, resize: iconResizeInfo});
   }
   if(options.processWall) {
-    wallCropInfo = fund.cropWallImgInfo || wallCropInfo;
+    wallCropInfo = folio.cropWallImgInfo || wallCropInfo;
     if(typeof(wallCropInfo) == 'string') {
       wallCropInfo = JSON.parse(wallCropInfo);
     }
-    jobs['wall'] = imageJob(fund.wallImage, wallFileName, {crop: wallCropInfo, resize: wallResizeInfo});
+    jobs['wall'] = imageJob(folio.wallImage, wallFileName, {crop: wallCropInfo, resize: wallResizeInfo});
   }
 
   async.parallel(jobs, function(error, results) {
     if(error) return callback(error);
 
     if(results.icon) {
-      fund.iconImage = results.icon;
+      folio.iconImage = results.icon;
     }
     if(results.wall) {
-      fund.wallImage = results.wall;
+      folio.wallImage = results.wall;
     }
 
     callback();

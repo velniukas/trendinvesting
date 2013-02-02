@@ -108,12 +108,12 @@ function(error) {
   res.render('main', {title: 'home'});
 });
 
-app.get('/funds', function(req, res) {
-	res.render('funds/portfolio', {title: 'portfolio'});
+app.get('/folios', function(req, res) {
+	res.render('folios/portfolio', {title: 'portfolio'});
 });
 
 app.get('/categories', function(req, res) {
-	res.render('funds/category', {title: 'category'});
+	res.render('folios/category', {title: 'category'});
 });
 
 app.listen(3000);
