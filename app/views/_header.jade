@@ -1,0 +1,32 @@
+mixin header
+  .navbar.navbar-inverse.navbar-fixed-top
+    .navbar-inner
+      .container
+        a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse') Menu
+        a.brand(href='/') 
+          span(style='color:orange') TREND
+          span(style='color:white') investing
+        #primary-nav.nav-collapse
+          ul.nav
+            li.active
+              a.anchorLink(href='/') 
+                i.icon-home
+                |  Home
+            li
+              a.anchorLink(href='/#features') Features
+            li
+              a.anchorLink(href='/#services') Services
+            li
+              a.anchorLink(href='/folios') Portfolio
+            li
+              a.anchorLink(href='/categories') Categories
+            li
+              a.anchorLink(href='/#about') About
+            li
+              a.anchorLink(href='/#contact') Contact
+
+        ul.nav.pull-right.nav-collapse
+          li
+            a(href='/auth')
+              i.icon-user.icon
+              |  Sign In

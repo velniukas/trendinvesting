@@ -1,0 +1,48 @@
+extends ../layout
+include _header
+include _footer
+
+block layout.body
+  mixin header
+    .container
+      .row-fluid
+        .span2
+          .row-fluid
+            ul.nav.nav-pills.nav-stacked.folioMenu
+              li.rounded6
+                a(href="/folios") Featured
+              li.active.rounded6
+                a(href="/folios/all") All Folios
+              li.rounded6
+                a(href="/user/profile") My Folios
+          .row-fluid
+            a.btn.btn-info.btn-large(href="/folio_editor") Folio editor
+
+        .row-fluid.span10.whiteBg.rounded12
+          div.flexslider
+            ul.slides
+              each folioObject,folioIndex in folios
+                -if(folioObject.status == 'published' || isAdmin)
+                  li
+                    center
+                      div.maxSizeImgDiv.makeItMiddle
+                        div.row-fluid
+                          img.folioImage.rounded12(src="#{folioObject.wallImage}")
+                        div.detailsLink.row-fluid.rounded12
+                          div.span10.folioSummery
+                            h1.folioTitle #{folioObject.title}
+                            p #{folioObject.desc}
+                          div.detailsLinkBtn.span2
+                            a.btn.btn-success.btn-large.pull-right(href="/folio/#{folioObject.id}") More Details
+    mixin footer                 
+  script(type="text/javascript")
+    function init() {
+      $('.flexslider').flexslider({
+        animation: "slide",
+        directionNav: true,
+        controlNav: true,
+        prevText: "Previous",
+        nextText: "Next",
+        controlsContainer: ".flexslider-container"
+      });
+    }

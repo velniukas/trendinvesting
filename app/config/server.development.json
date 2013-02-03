@@ -1,0 +1,35 @@
+{
+  "site": {
+    "hostname": "localhost:3000",
+    "port": 3000,
+    "email": "steve.g.messina@gmail.com",
+    "pidfile": "/tmp/TRENDinvesting.pid"
+  },
+  "auth": {
+    "twitter": {
+      "consumerKey": "zCowcooSHUM17tQJBltFA",
+      "consumerSecret": "RqS6AEirMStp6Zo3zfnqCE6RVSICuk9KC5TbjP2Ar0"
+    },
+    "facebook": {
+      "appId": "321944991192647",
+      "appSecret": "ed46675a72f71e846213f25c3d2aa60c"
+    },
+    "google": {
+      "clientId": "1041276452869.apps.googleusercontent.com",
+      "clientSecret": "7fMR8QidXiToK0IauOyL2Jgj"
+    }
+  },
+  "db": {
+    "address": "mongodb://localhost/",
+    "database": "TRENDinvesting",
+    "schemaVersion": 6
+  },
+  "mail": {
+    "host": "smtp.gmail.com",
+    "username": "steve.g.messina@gmail.com",
+    "password": "password"
+  },
+  "admin": {
+    "twitter": "steve_messina"
+  }
+}

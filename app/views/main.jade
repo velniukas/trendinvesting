@@ -1,0 +1,449 @@
+extends layout
+
+block layout.body
+  body#home(data-spy='scroll', data-target='/#primary-nav')
+      mixin header
+      .teaser
+        .container
+          .row
+            .span12.headline
+              h1 Investing ideas for today's market.
+              small Professional built portfolios designed to perform in every market.
+              i.description.strong(style="color:yellow")  And this is that place. So, let's get started right away &nbsp;
+                a.btn.btn-red(href='/#') Sign Up
+            //
+              /span12
+          //
+            /row
+          .row.animated.fadeInUp
+            .span12
+              #myCarousel.carousel.slide
+                .carousel-inner
+                  //
+                    slide
+                  .active.item
+                    .row
+                      .span2
+                      .span8
+                        img(src='img/1.png', alt='')
+                      .span2
+                  //
+                    slide
+                  .item
+                    .row
+                      .span2
+                      .span8.animated.rotateInDownLeft
+                        img(src='img/2.png', alt='')
+                      .span2
+                  //
+                    slide
+                  .item
+                    .row
+                      .span2
+                      .span8.animated.fadeInUpBig
+                        img(src='img/3.png', alt='')
+                      .span2
+                  //
+                    slide
+                  .item.animated.fadeInUpBig
+                    img(src='assets/slide-full-1.png', alt='')
+                  //
+                    slide
+                  .item
+                    .row
+                      .span2
+                      .span8.animated.rotateInDownLeft
+                        .video-container
+                          iframe(src='https://player.vimeo.com/video/46992613?title=1&byline=1&portrait=1', width='470', height='580', frameborder='0', webkitallowfullscreen='webkitAllowFullScreen', mozallowfullscreen='mozallowfullscreen', allowfullscreen='allowFullScreen')
+                      .span2
+                    //
+                      /row
+                  //
+                    /item
+                //
+                  /carousel-inner
+                //
+                   Carousel nav 
+                a.carousel-control.left(href='/#myCarousel', data-slide='prev') ‹
+                a.carousel-control.right(href='/#myCarousel', data-slide='next') ›
+              //
+                /myCarousel
+            //
+              /span12
+          //
+            /row
+        //
+          /container
+      .container
+        //
+          main content
+        .strip
+          .row
+            .span12
+              a.btn.btn-red.btn-large(href='/#')
+                i.icon-heart.icon-white
+                |  Sign up now
+              a.btn.btn-inverse.btn-large.anchorLink(href='/#portfolio')
+                | Browse Portfolio 
+                i.icon-share-alt.icon-white
+              span.call-to-action Sign up for a free portfolio from our great catalogue now!
+              p *Don't worry, we have 15+ years in the market, we know our stuff.
+        section#features
+          .row
+            .span12
+              h2
+                em
+                  i.icon-bookmark
+                  |  Main Features
+                a.up.anchorLink(href='/#home')
+                  i.icon-chevron-up
+          .row
+            .span4.feature
+              h3 We start with an investing idea.
+              img.thumb(src='assets/feature-html5.png', width='50', height='50', alt='thumb')
+              p
+                | People are fixing up homes. Who could benefit?
+            .span4.feature
+              h3 We analyze & filter stocks related to the idea.
+              img.thumb(src='assets/feature-layout.png', width='50', height='50', alt='thumb')
+              p
+                | Our teams of highly-trained analysts will search through the jungle of shares to find the stocks that best suit your taste and requirements.
+            .span4.feature
+              h3 We intelligently weigh up to 30 stocks to form a portfolio.
+              img.thumb(src='assets/feature-webfonts.png', alt='thumb')
+              p
+                | Our experienced advisors and intelligent systems will do the number crunching and research, so you don't have to.
+          //
+            /row
+          .row
+            .span4.feature
+              h3 It works wherever you are. Mobile or Web.
+              img.thumb(src='assets/feature-design.png', alt='thumb')
+              p
+                | The best part about us, is that you can take us with you anytime, anyplace.
+            .span4.feature
+              h3 Great Support
+              img.thumb(src='assets/feature-customize.png', alt='thumb')
+              p
+                | Our exceptional support means that we are there for you 24x7, 366 days a year, yes even leap years.
+            .span4.feature
+              h3 You can get started with just one click for just $9.99 for your first portfolio today
+              img.thumb(src='assets/feature-support.png', alt='thumb')
+              p
+                | With such a great offer, why don't you come onboard right now?
+          //
+            /row
+        section#services
+          .row
+            .span12
+              h2
+                em
+                  i.icon-bookmark
+                  |  Products & Services
+                a.up.anchorLink(href='/#home')
+                  i.icon-chevron-up
+          .row
+            .span4
+              img.framed(src='assets/product-1.png', alt='')
+              br
+            .span5
+              h4 Product Overview
+              p
+                | HD movies and TV shows from iTunes. The entire Netflix streaming catalog. The latest hit shows from Hulu Plus. Live baseball, basketball, and hockey games. Apple TV makes you the master of
+                a(href='/#', rel='tooltip', title='fancy tooltip') your own media empire
+                | .
+              p
+                | Get to know the latest features available now. Don't forget to checke out our website on a regular basis:
+              ul
+                li
+                  a(href='/#', rel='tooltip', data-placement='right', title='fancy tooltip') Mobile ready
+                li
+                  a(href='/#', rel='tooltip', data-placement='right', title='fancy tooltip') Customizable
+                li
+                  a(href='/#', rel='tooltip', data-placement='right', title='fancy tooltip') Great customer support
+                li
+                  a(href='/#', rel='tooltip', data-placement='right', title='fancy tooltip') dropcapproof design
+            .span3
+              .well
+                strong Item Details
+                hr
+                p
+                  i.icon-tag
+                  | That’s perfect for spontaneous movie nights (or afternoons or mornings). Search by top movies, title, or genre. Can’t decide? Read reviews, watch trailers, and check out Rotten Tomatoes ratings.
+          br
+          .row
+            .span4
+              img.framed(src='assets/product-2.png', alt='')
+              br
+            .span5
+              h4 Second Product Overview
+              p
+                | Make any time prime time. Buy your favorite TV shows and watch them — without commercials — whenever you like.
+                a(href='/#', rel='tooltip', title='fancy tooltip') Watch a show the day after it airs
+                | , or camp out on your couch and catch up on past seasons with a marathon of back-to-back-to-back episodes. Apple TV keeps track of your favorite shows, so the next time you turn on your TV, you can quickly see which season you’re watching and which episodes are new. Just choose shows with a few clicks of the Apple Remote.
+              p
+                | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster. Bootstrap is built for you.
+            .span3
+              .well
+                strong Item Details
+                hr
+                p
+                  i.icon-tag
+                  | That’s perfect for spontaneous movie nights (or afternoons or mornings).
+                  a(href='/#', rel='tooltip', title='fancy tooltip') Search by top movie
+                  | title, or genre. Can’t decide? Read reviews, watch trailers, and check out Rotten Tomatoes ratings.
+          br
+          .row
+            .span4
+              img.framed(src='assets/product-3.png', alt='')
+              br
+            .span5
+              h4 Third Product Overview
+              p
+                | Make any time prime time. Buy your favorite TV shows and watch them — without commercials — whenever you like. Watch a show the day after it airs, or camp out on your couch and catch.
+              hr
+              blockquote
+                p Best service I've ever experienced. Thank you very much for your time.
+                small Lucida Console
+              hr
+            .span3
+              .well
+                strong Item Details
+                hr
+                p
+                  i.icon-tag
+                  | That’s perfect for spontaneous movie nights (or afternoons or mornings). Search by top movies, title, or genre. Can’t decide? Read reviews, watch trailers, and check out Rotten Tomatoes ratings.
+          br
+          .row
+            .span4
+              img.framed(src='assets/product-4.png', alt='')
+              br
+            .span5
+              h4 Fourth Product Overview
+              p
+                | Make any time prime time. Buy your favorite TV shows and watch them — without commercials — whenever you like. Watch a show the day after it airs, or camp out on your couch and catch.
+              p
+                | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster.
+                a(href='/#', rel='tooltip', title='fancy tooltip') Bootstrap
+                | is built for you.
+            .span3
+              .well
+                strong Item Details
+                hr
+                p
+                  i.icon-tag
+                  | That’s perfect for spontaneous movie nights (or afternoons or mornings). Search by top movies, title, or genre. Can’t decide? Read reviews, watch trailers, and check out Rotten Tomatoes ratings.
+        section#portfolio
+          .row
+            .span12
+              h2
+                em
+                  i.icon-bookmark
+                  |  Portfolios
+                a.up.anchorLink(href='/#home')
+                  i.icon-chevron-up
+          .row
+            .span12
+              ul.thumbnails
+                li.span3
+                  mixin portfolio_thumb
+                li.span3
+                  mixin portfolio_thumb
+                li.span3
+                  mixin portfolio_thumb
+                li.span3
+                  mixin portfolio_thumb
+                li.span3
+                  mixin portfolio_thumb
+                li.span3
+                  mixin portfolio_thumb
+                li.span3
+                  mixin portfolio_thumb
+                li.span3
+                  mixin portfolio_thumb
+
+                a.btn.btn-warning.btn-large.pull-right(href='/folios/all') See more portfolios
+            //
+              span12
+          //
+            /row
+        section#about
+          .row
+            .span12
+              h2
+                em
+                  i.icon-bookmark
+                  |  About & Legal
+                a.up.anchorLink(href='/home')
+                  i.icon-chevron-up
+          .row
+            .span4
+              .well
+                h3 Terms and Conditions
+                hr
+                p
+                  span.dropcap 1
+                  | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster. Bootstrap is built for you.
+                p
+                  | Bootstrap is designed to help people of all skill level—designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.
+                a.btn.btn-red(data-toggle='modal', href='/#myModal') Launch Modal
+                #myModal.modal.hide.fade
+                  .modal-header
+                    button.close(type='button', data-dismiss='modal') ×
+                    h3 Frequently Asked Questions
+                    span.dropcap 1
+                    h4 Can I use your freebies in my latest client project?
+                    p
+                      | Yes. No attribution required. When sharing any work that uses my resources on sites like Dribbble or Forrst it would be nice to be credited. You want to make me feel all warm and fuzzy inside don’t you?
+                    hr
+                    h4
+                      span.dropcap 2
+                      | Can I use your resources in a theme/template?
+                    p
+                      | Yes. No attribution required but appreciated. I love people coding up the odd freebie, but an entire blog dedicated to just that is probably a step too far Jack. C’mon Mookie, do the right thing.
+                    hr
+                    h4
+                      span.dropcap 3
+                      | Can I offer your freebies for download on my blog/site?
+                    p
+                      | Not directly no. If you want to share the wealth then linking to each resource on Premium Pixels is encouraged and sincerely appreciated. Linking directly to the zip file, or worse, repackaging your own zip file, gets my goat :(
+                  .modal-footer
+                    a.btn.btn-red(href='/#', data-dismiss='modal') Ok, I got it.
+            .span4
+              .well
+                h3 Light Weight Defaults
+                hr
+                span.dropcap 2
+                p
+                  | Bootstrap is designed to help people of all skill level—designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.
+                p
+                  | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster. Bootstrap is built for you.
+                a.btn.btn-red(data-toggle='modal', href='/#myModal') Launch Modal
+            .span4
+              .well
+                h3 Simple & Flexible Markup
+                hr
+                p
+                  span.dropcap 3
+                  | Like you, we love building awesome products on the web. We love it so much, we decided to help people just like us do it easier, better, and faster. Bootstrap is built for you.
+                p
+                  | Bootstrap is designed to help people of all skill level—designer or developer, huge nerd or early beginner. Use it as a complete kit or use to start something more complex.
+                a.btn.btn-red(data-toggle='modal', href='/#myModal') Launch Modal
+          //
+            /row
+        section#contact
+          .row
+            .span12
+              h2
+                em
+                  i.icon-bookmark
+                  |  Contact Us
+                a.up.anchorLink(href='/#home')
+                  i.icon-chevron-up
+          .row
+            .span4
+              h3 Company Address
+              br
+              .well
+                strong Company:
+                hr
+                p
+                  strong Alex Ypsilanti
+                  br
+                  | LGB Cafe, 1/F LHT Tower, Queens Road Central
+                  br
+                  | Central, Hong Kong
+                  br
+                  | Tel.: +852 123 456 78
+                  | hello@trendinvesting.com
+                p
+                  | Don't hesitate to contact us about anything you want. We are open to questios, comments and suggestions.
+            .span4
+              h3 Time to keep in touch.
+              br
+              form
+                fieldset
+                  .control-group
+                    label.control-label(for='name') Full Name:
+                    input#name.input-xlarge(type='text')
+                  .control-group
+                    label.control-label(for='email') Valid Email:
+                    input#email.input-xlarge(type='text')
+                  .control-group
+                    label.control-label(for='message') Message:
+                    textarea#message.input-xlarge(rows='3')
+                  button.btn.btn-red(type='submit') Submit Now!
+            //
+              /span
+            .span4
+              h3 How about a map?
+              br
+              img.framed(src='img/map.png', alt='')
+          //
+            /row
+      //
+        /main content
+      footer
+        .container
+          .row
+            .span2
+              h3 Business Network
+              ul
+                li
+                  a(href='/#', title='')
+                    i.icon-external-link
+                    | Company Websites
+                li
+                  a(href='/#', title='')
+                    i.icon-external-link
+                    | Subsidiary Websites
+                li
+                  a(href='/#', title='')
+                    i.icon-external-link
+                    | Affiliate Websites
+                li
+                  a(href='/#', title='')
+                    i.icon-external-link
+                    | Sibling Websites
+            .span2
+              h3 Social Networks
+              ul
+                li
+                  a(href='/#', title='')
+                    i.icon-twitter
+                    | Twitter
+                li
+                  a(href='/#', title='')
+                    i.icon-facebook
+                    | Facebook
+                li
+                  a(href='/#', title='')
+                    i.icon-google-plus
+                    | Google+
+                li
+                  a(href='/#', title='')
+                    i.icon-pinterest
+                    | Pinterest
+            .span4
+              h3 Terms and Conditions
+              p
+                | Commercial Use. If you would like to use these graphics in a commercial projects, please go to the commercial use section. Non-profit use.
+              p If you would like to use graphics from psdgraphics.com in a non-profit projects.
+            .span4
+              h3 Newsletter
+              p
+                | Subscribe to our monthly newsletter and be the first to know about our news and special deals!
+              form
+                .controls
+                  .input-append
+                    input(type='text', placeholder='Enter your E-mail')
+                    input.btn.btn-inverse(type='submit', value='Ok')
+            //
+              /span4
+          //
+            /row
+        //
+           /container 
+
+        mixin footer
+
